@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/reflex-media/slsboot.git"
+    "url": "git+https://github.com/reflex-media/slsrun.git"
   },
   "author": "Sufiyan Rahmat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/reflex-media/slsboot/issues"
+    "url": "https://github.com/reflex-media/slsrun/issues"
   },
-  "homepage": "https://github.com/reflex-media/slsboot#readme"
+  "homepage": "https://github.com/reflex-media/slsrun#readme"
 }
