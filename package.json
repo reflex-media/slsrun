@@ -4,7 +4,7 @@
   "description": "Configurations and scripts for reflex-media's serverless templates.",
   "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/reflex-media/slsrun/issues"
   },
-  "homepage": "https://github.com/reflex-media/slsrun#readme"
+  "homepage": "https://github.com/reflex-media/slsrun#readme",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
 }

@@ -1,4 +1,4 @@
-function normalize(headers, qs, body) {
+var normalize = function(headers, qs, body) {
   var input = null;
 
   if (!headers && qs === null) return input;
@@ -19,7 +19,7 @@ function normalize(headers, qs, body) {
   }
 
   return input;
-}
+};
 
 /**
  * Normalizes handler.event.body and handler.event.queryStringParameters
@@ -36,5 +36,7 @@ function normalizeHttpRequest /* istanbul ignore next */() {
   };
 }
 
-module.exports = normalize;
-module.exports = normalizeHttpRequest;
+module.exports = {
+  normalize: normalize,
+  normalizeHttpRequest,
+};
