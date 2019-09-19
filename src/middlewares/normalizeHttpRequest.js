@@ -1,20 +1,22 @@
-var normalize = function(headers, qs, body) {
-  var input = null;
+export const normalize = (headers, qs, body) => {
+  let input = null;
 
   if (!headers && qs === null) return input;
 
   if (qs !== null) input = qs;
 
-  var contentType = headers["Content-Type"] || headers["content-type"];
+  const contentType = headers['Content-Type'] || headers['content-type'];
 
   if (!contentType) return input;
 
   /* istanbul ignore else */
-  if (contentType.startsWith("application/json")) {
+  if (contentType.startsWith('application/json')) {
     try {
-      input = Object.assign({}, input, JSON.parse(body));
+      input = { ...input, ...JSON.parse(body) };
     } catch (err) {
-      throw new Error("Content type defined as JSON but an invalid JSON was provided");
+      throw new Error(
+        'Content type defined as JSON but an invalid JSON was provided'
+      );
     }
   }
 
@@ -25,7 +27,7 @@ var normalize = function(headers, qs, body) {
  * Normalizes handler.event.body and handler.event.queryStringParameters
  * as handler.event.input Object
  */
-function normalizeHttpRequest /* istanbul ignore next */() {
+export default /* istanbul ignore next */ () => {
   return {
     before: (handler, next) => {
       const { headers, queryStringParameters, body } = handler.event;
@@ -34,9 +36,4 @@ function normalizeHttpRequest /* istanbul ignore next */() {
       next();
     },
   };
-}
-
-module.exports = {
-  normalize: normalize,
-  normalizeHttpRequest,
 };

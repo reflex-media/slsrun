@@ -1,3 +1,3 @@
-exports.printMsg = function() {
-  console.log("Import specific middlewares as required.");
+export default () => {
+  console.log('Import specific middlewares as required.');
 };
