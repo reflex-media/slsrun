@@ -1,4 +1,4 @@
-const normalize = (headers, qs, body) => {
+export const normalize = (headers, qs, body) => {
   let input = null;
 
   if (!headers && qs === null) return input;
@@ -38,5 +38,4 @@ const normalizeHttpRequest /* istanbul ignore next */ = () => {
   };
 };
 
-module.exports = normalize;
-module.exports = normalizeHttpRequest;
+export default normalizeHttpRequest;

@@ -1,4 +1,4 @@
-module.exports = {
-  normalizeHttpRequest: require('./normalizeHttpRequest'),
-  successHttpResponse: require('./successHttpResponse'),
-};
+import normalizeHttpRequest from './normalizeHttpRequest';
+import successHttpResponse from './successHttpResponse';
+
+export { normalizeHttpRequest, successHttpResponse };

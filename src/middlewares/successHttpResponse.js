@@ -1,4 +1,4 @@
-export const successHandler = opts => {
+export const successHandler = (opts = {}) => {
   const defaults = {
     response: '',
     statusCode: 200,
@@ -33,7 +33,7 @@ export const successHandler = opts => {
  * Formats response for successful responses
  */
 /* istanbul ignore next */
-const successHttpResponse = opts => {
+const successHttpResponse = (opts = {}) => {
   return {
     after(handler, next) {
       const defaults = {

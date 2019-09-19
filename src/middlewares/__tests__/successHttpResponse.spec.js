@@ -1,6 +1,23 @@
 import { successHandler } from '../successHttpResponse';
 
 describe('test successHttpResponse middleware', () => {
+  it('test default without parameters', () => {
+    const data = successHandler();
+
+    expect(data.headers['Access-Control-Allow-Credentials']).toBe(true);
+    expect(data.headers['Access-Control-Allow-Origin']).toBe('*');
+    expect(data.headers['Cache-Control']).toBe('no-cache');
+
+    expect(data.statusCode).toBe(200);
+
+    expect(typeof data.body).toBe('string');
+
+    const dataBody = JSON.parse(data.body);
+    expect(dataBody).toHaveProperty('status', 'success');
+    expect(dataBody).toHaveProperty('data', '');
+    expect(dataBody).toHaveProperty('_meta', {});
+  });
+
   it('test default', () => {
     const data = successHandler({ response: 'Some message' });
 
