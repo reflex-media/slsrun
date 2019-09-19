@@ -1,4 +1,4 @@
-export const normalize = (headers, qs, body) => {
+const normalize = (headers, qs, body) => {
   let input = null;
 
   if (!headers && qs === null) return input;
@@ -27,7 +27,7 @@ export const normalize = (headers, qs, body) => {
  * Normalizes handler.event.body and handler.event.queryStringParameters
  * as handler.event.input Object
  */
-export default /* istanbul ignore next */ () => {
+const normalizeHttpRequest /* istanbul ignore next */ = () => {
   return {
     before: (handler, next) => {
       const { headers, queryStringParameters, body } = handler.event;
@@ -37,3 +37,6 @@ export default /* istanbul ignore next */ () => {
     },
   };
 };
+
+module.exports = normalize;
+module.exports = normalizeHttpRequest;

@@ -1,4 +1,4 @@
-import { normalize } from '../normalizeHttpRequest';
+import normalize from '../normalizeHttpRequest';
 
 describe('test normalizeRequest middleware', () => {
   it('test without parameters', () => {

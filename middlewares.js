@@ -1,1 +1,1 @@
-export default './src/middlewares';
+module.exports = require('./src/middlewares');
