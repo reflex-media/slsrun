@@ -127,10 +127,7 @@ describe('test errorHandler middleware', () => {
     expect(dataBody).toHaveProperty('data', null);
     expect(dataBody).toHaveProperty('error');
     expect(dataBody).toHaveProperty('error.code', 'UNKNOWN_ERROR');
-    expect(dataBody).toHaveProperty(
-      'error.message',
-      'Error: Test validation error'
-    );
+    expect(dataBody).toHaveProperty('error.message', '');
     expect(dataBody).toHaveProperty('error.details', '');
   });
 });

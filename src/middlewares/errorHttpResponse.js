@@ -9,6 +9,7 @@ export const errorHttpResponseHandler = opts => {
       'Access-Control-Allow-Origin': '*',
       'Cache-Control': 'no-cache',
     },
+    error: '',
   };
 
   const optionsHeadersMerged =
