@@ -1,4 +1,5 @@
-export const normalize = (headers, qs, body) => {
+export const normalizeRequest = opts => {
+  const { headers, qs, body } = opts;
   let input = null;
 
   if (!headers && qs === null) return input;
@@ -23,18 +24,26 @@ export const normalize = (headers, qs, body) => {
   return input;
 };
 
+export const normalizeHttpRequestBeforeHandler = (handler, next) => {
+  const options = {
+    headers: handler.event.headers,
+    qs: handler.event.queryStringParameters,
+    body: handler.event.body,
+  };
+
+  // eslint-disable-next-line no-param-reassign
+  handler.event.input = normalizeRequest(options);
+  /* istanbul ignore next */
+  next();
+};
+
 /**
  * Normalizes handler.event.body and handler.event.queryStringParameters
  * as handler.event.input Object
  */
 const normalizeHttpRequest /* istanbul ignore next */ = () => {
   return {
-    before: (handler, next) => {
-      const { headers, queryStringParameters, body } = handler.event;
-      // eslint-disable-next-line no-param-reassign
-      handler.event.input = normalize(headers, queryStringParameters, body);
-      next();
-    },
+    before: (handler, next) => normalizeHttpRequestBeforeHandler(handler, next),
   };
 };
 

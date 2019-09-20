@@ -1,8 +1,11 @@
-import { successHandler } from '../successHttpResponse';
+import {
+  successHttpResponseHandler,
+  successHttpResponseAfterHandler,
+} from '../successHttpResponse';
 
-describe('test successHttpResponse middleware', () => {
+describe('test successHttpResponseHandler middleware', () => {
   it('test default without parameters', () => {
-    const data = successHandler();
+    const data = successHttpResponseHandler();
 
     expect(data.headers['Access-Control-Allow-Credentials']).toBe(true);
     expect(data.headers['Access-Control-Allow-Origin']).toBe('*');
@@ -19,7 +22,7 @@ describe('test successHttpResponse middleware', () => {
   });
 
   it('test default', () => {
-    const data = successHandler({ response: 'Some message' });
+    const data = successHttpResponseHandler({ response: 'Some message' });
 
     expect(data.headers['Access-Control-Allow-Credentials']).toBe(true);
     expect(data.headers['Access-Control-Allow-Origin']).toBe('*');
@@ -36,7 +39,7 @@ describe('test successHttpResponse middleware', () => {
   });
 
   it('test with status code and event', () => {
-    const data = successHandler({
+    const data = successHttpResponseHandler({
       response: 'Some message',
       statusCode: 201,
       event: {
@@ -53,7 +56,7 @@ describe('test successHttpResponse middleware', () => {
   });
 
   it('test with status code and event in debug mode', () => {
-    const data = successHandler({
+    const data = successHttpResponseHandler({
       response: 'Some message',
       statusCode: 201,
       event: {
@@ -73,7 +76,7 @@ describe('test successHttpResponse middleware', () => {
   });
 
   it('test with configurable header', () => {
-    const data = successHandler({
+    const data = successHttpResponseHandler({
       response: 'Some message',
       headers: {
         'Access-Control-Allow-Credentials': false,
@@ -94,5 +97,17 @@ describe('test successHttpResponse middleware', () => {
     expect(dataBody).toHaveProperty('status', 'success');
     expect(dataBody).toHaveProperty('data', 'Some message');
     expect(dataBody).toHaveProperty('_meta', {});
+  });
+});
+
+describe('test successHttpResponseAfterHandler', () => {
+  it('test with default parameters', () => {
+    const handler = {
+      response: {},
+      event: {},
+    };
+
+    successHttpResponseAfterHandler(handler, () => {});
+    expect(handler.response).toHaveProperty('statusCode', 200);
   });
 });
